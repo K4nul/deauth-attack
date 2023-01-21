@@ -1,5 +1,6 @@
 #include "Mac.h"
 #include "WirelessPacket.h"
+#include "CParam.h"
 #include <iostream>
 #include <fstream>
 #include <string> 
@@ -19,16 +20,6 @@ enum mode
     
 };
 
-
-class CParam
-{
-public:
-
-	std::vector<std::string> params;
-
-    bool parse(int argc, char* argv[]);
-    void usage();
-};
 
 
 class CDeauthAttack
