@@ -11,11 +11,12 @@
 #include <pcap.h>
 #include <ncurses.h>
 
-enum status
+enum mode
 {
-    SUCCESS,
-    FAIL,
-    NEXT
+    BROADCASTDEAUTHATTACK,
+    UNICASTDEAUTHATTACK,
+    AUTHATTACK
+    
 };
 
 
@@ -34,9 +35,11 @@ class CDeauthAttack
 {
 private:
 	
-    char * packet;
 	pcap_t* pcap;	
+    int size;
     u_int8_t type;
+    std::vector<char *> packets;
+
     CParam param;
     
 
@@ -49,10 +52,11 @@ public:
 private:
 
     u_int8_t getType();
-    Mac getDstMac();
-    void makeDeauth();
+    Mac getMac();
+    void makeUnicastDeauth();
+    void makeBroadcastDeauth();
     void makeAuth();
-    void makePacket();
+    void makePacket(u_int8_t attackMode);
     void sendPacket();    
 
 };
